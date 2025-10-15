@@ -104,6 +104,7 @@ for s = 1:(nx*ny)
                 C(i,j) = sum(sum(x.*sumE));     
             end
         end
+        disp(-C);
 end
 
 %___________________________________________________INITIAL MATERIAL DESIGN
@@ -116,4 +117,5 @@ for j = 1:ny
         end
     end
 end
+
 end
