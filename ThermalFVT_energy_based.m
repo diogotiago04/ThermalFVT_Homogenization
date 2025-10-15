@@ -1,9 +1,7 @@
 
 function ThermalFVT_energy_based (nx, ny, frac, k_m, k_i)
 
-
 R = sqrt(frac*nx*ny/pi);                     % radius of circular material heterogeneity 
-
 
 % Subvolume faces
 [i,j] = meshgrid(1:nx,1:ny);
@@ -11,7 +9,6 @@ s = (i+(j-1)*nx)';
 faces = [s(:),s(:)+nx*ny+1,s(:)+nx,s(:)+nx*ny];
 faces(end-nx+1:end,3) = faces(1:nx,1);
 faces(nx:nx:end,2) = faces(1:nx:end-nx+1,4);
-
 
 % Degrees of freedom
 ndof = max(faces(:));
@@ -24,7 +21,6 @@ dofDE = [dofDE(1),dofDE(end)];
 fixed = [dofIS dofDE];
 free = setdiff(1:ndof,fixed);
 
-
 % Sparse mapping indices
 iK = reshape(kron(faces,ones(4,1))',16*nx*ny,1);
 jK = reshape(kron(faces,ones(1,4))',16*nx*ny,1);
@@ -33,7 +29,6 @@ jF = [ones(4,nx*ny); 2*ones(4,nx*ny)];
 
 
 %____________________________________LOCAL CONDUCTIVITY MATRIX AND HEAT FLUX VECTOR
-
 
 k0 = eye(2);
 
@@ -64,7 +59,6 @@ Tf = zeros(ndof,2);        % surface-averaged fluctuating temperatures
 T = zeros(nx*ny,4,2);      % total surface-averaged temperatures (macroscopic + fluctuating)
 C = zeros(2);              % effective thermal conductivity matrix
 
-
 % Compute macroscopic temperatures
 T0 = cell(nx*ny,1);
 for j = 1:ny
@@ -90,7 +84,6 @@ Q0 = sparse(iF(:), jF(:), sF, ndof, 2);
 
 % Compute fluctuating temperatures for two unit temperature gradient tests
 Tf(free,:) = K(free,free) \ Q0(free,:);
-
 
 % MATERIALS' HOMOGENIZATION
 
@@ -119,3 +112,4 @@ for j = 1:ny
 end
 
 end
+
