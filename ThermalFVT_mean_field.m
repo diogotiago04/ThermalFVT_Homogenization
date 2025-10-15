@@ -90,6 +90,7 @@ for j = 1:ny
         K_ast = K_ast+x(s)*A/(nx*ny);
     end
 end
+disp(K_ast);
 end
 
 %___________________________________________________INITIAL MATERIAL DESIGN
@@ -102,4 +103,5 @@ for j = 1:ny
         end
     end
 end
+
 end
