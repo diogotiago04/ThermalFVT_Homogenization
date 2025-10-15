@@ -1,11 +1,7 @@
 
 function ThermalFVT_mean_field(nx,ny,frac,k_m,k_i)
 
-
-
 R = sqrt(frac*nx*ny/pi);                       % radius of circular material heterogeneity
-
-
 
 % Subvolume faces
 [i,j] = meshgrid(1:nx,1:ny);
@@ -14,7 +10,6 @@ faces = [s(:),s(:)+nx*ny+1,s(:)+nx,s(:)+nx*ny];
 faces(end-nx+1:end,3) = faces(1:nx,1);
 faces(nx:nx:end,2) = faces(1:nx:end-nx+1,4);
 
-
 % Degrees of freedom
 ndof = max(faces(:));
 dofIS = unique([faces(1:nx, 1); faces(end-nx+1:end, 3)]);
@@ -22,11 +17,9 @@ dofIS = [dofIS(1),dofIS(end)];
 dofDE = unique([faces(nx:nx:end, 2); faces(1:nx:end-nx+1, 4)]);
 dofDE = [dofDE(1),dofDE(end)];
 
-
 % Degrees of freedom: fixed and free
 fixed = [dofIS dofDE];
 free = setdiff(1:ndof,fixed);
-
 
 % Sparse mapping indices
 iK = reshape(kron(faces,ones(4,1))',16*nx*ny,1);
@@ -34,10 +27,7 @@ jK = reshape(kron(faces,ones(1,4))',16*nx*ny,1);
 iF = repmat((faces)',2,1);                
 jF = [ones(4,nx*ny); 2*ones(4,nx*ny)];
 
-
-
 %____________________________________LOCAL CONDUCTIVITY MATRIX AND HEAT FLUX VECTOR
-
 
 k0 = eye(2);
 
@@ -105,3 +95,4 @@ for j = 1:ny
 end
 
 end
+
