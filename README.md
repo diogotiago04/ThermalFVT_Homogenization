@@ -5,8 +5,8 @@ O objetivo é determinar a **matriz de condutividade térmica efetiva** de um me
 
 Duas formulações distintas são apresentadas:
 
-- **Energy-based formulation** — baseada na equivalência energética entre a energia térmica conduzida e a fornecida.
-- **Mean-field formulation** — fundamentada na equivalência energética micro-macro de Hill e nas médias de campo.
+- **Energy-based formulation** — baseada na equivalência energética;
+- **Mean-field formulation** — beseada teoria de campos médios.
 
 ### 🧩 Recursos principais
 
